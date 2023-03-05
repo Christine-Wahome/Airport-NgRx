@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { AddBooking, Booking, Message, User,LoginUser } from "src/app/Interfaces";
+import { AddBooking, Booking, Message } from "src/app/Interfaces";
 
 
 export const getBookings = createAction('[Booking]-getBookings')
@@ -38,10 +38,3 @@ export const deleteBookingFail= createAction('[deleteBooking]-deleteBookingFail'
 
 
 
-export const getLoggedInUsers = createAction('[login]-getLoggedInUsers')
-
-export const loginUser = createAction('[login]-loginUser',props<{user:LoginUser[]}>())
-
-export const loginSuccess = createAction('[login]-loginSuccessful',props<{message:Message}>())
-
-export const loginFail = createAction('[login]-loginFailed',props<{error:string}>())

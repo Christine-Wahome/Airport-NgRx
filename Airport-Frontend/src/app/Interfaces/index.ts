@@ -10,8 +10,10 @@ export interface Message{
 }
 
 export interface LoginUser{
+    
     Email:string
-    Password:string
+    password:string
+
 }
 
 export interface LoginSuccess{

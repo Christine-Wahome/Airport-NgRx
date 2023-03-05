@@ -56,7 +56,7 @@ try {
         const {Password,...rest}=item
         return rest
     })
-    const token = jwt.sign(payload[0], process.env.SECRETKEY as string , {expiresIn:'3600s'})
+    const token = jwt.sign(payload[0], process.env.SECRETKEY as string , {expiresIn:'360000s'})
     return res.status(200).json({message:'User Loggedin!!!', token, role:user[0].Role, name:user[0].Name})
 
 } catch (error) {

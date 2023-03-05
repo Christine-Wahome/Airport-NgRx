@@ -8,8 +8,9 @@ import { ErrorComponent } from 'src/app/error/error.component';
 import { LoginUser } from 'src/app/Interfaces';
 import { Observable } from 'rxjs';
 import { theLoggedInUsers } from 'src/app/State/Reducers/userReducer';
-import { getLoggedInUsers, loginUser } from 'src/app/State/Actions/bookingActions';
+import { getLoggedInUsers, loginUser } from 'src/app/State/Actions/userActions';
 import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/State/appState';
 
 @Component({
   selector: 'app-login',
@@ -23,9 +24,11 @@ export class LoginComponent implements OnInit {
   show=false
   error=null
   token: string = '';
+  role: string = 'customer'
+  name: string = 'Ever'
   login$!:Observable<LoginUser[]>
   constructor(private fb:FormBuilder, 
-    private router:Router, private store:Store<any>
+    private router:Router, private store:Store<AppState>
     ){
 
   }
@@ -35,9 +38,9 @@ export class LoginComponent implements OnInit {
       Password:[null, Validators.required]
     })
     
-    this.login$=this.store.select(theLoggedInUsers)
+    // this.login$=this.store.select(theLoggedInUsers)
     
-    this.store.dispatch(getLoggedInUsers())
+    // this.store.dispatch(getLoggedInUsers())
     this.store.select('sample').subscribe(state=>{
       // console.log(state);
       this.show= state.showForm
@@ -46,21 +49,16 @@ export class LoginComponent implements OnInit {
   
 
   submitForm(){
-    // this.authentication.loginUser(this.form.value).subscribe(response=>{
-    //   this.auth.setRole(response.role)
-    //   this.auth.setName(response.name)
-    //   this.auth.login()
-    //   localStorage.setItem('token', response.token)
-    //   if(response.token){
-    //     this.router.navigate(['book'])
-    //   }
-    // },(error)=>{
-    // this.error=error.error
-    // })
-
+    localStorage.clear()
     this.store.dispatch(loginUser({user:this.form.value}))
-      this.store.dispatch(getLoggedInUsers())  
       this.router.navigate(['book'])
+    
+      this.store.select(theLoggedInUsers).subscribe(res => {
+        if(res){
+          localStorage.setItem('token',res.token)
+        }
+       
+      })
   }
 
   Close(){

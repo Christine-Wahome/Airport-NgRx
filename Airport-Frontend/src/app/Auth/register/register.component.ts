@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthenticationService } from 'src/app/Services/authentication.service';
+
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { registerUser } from 'src/app/State/Actions/userActions';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit{
   form!:FormGroup
-  constructor(private fb:FormBuilder,private authentication:AuthenticationService, private router:Router){
+  constructor(private fb:FormBuilder, private router:Router,private store:Store<any>){
 
   }
   ngOnInit(): void {
@@ -24,9 +26,14 @@ export class RegisterComponent implements OnInit{
     })
   }
   submitForm(){
-    this.authentication.registerUser(this.form.value).subscribe(response=>{
-      console.log(response);
+  //   this.authentication.registerUser(this.form.value).subscribe(response=>{
+  //     console.log(response);
+  //     this.router.navigate(['login'])
+  //   })
+  // }
+  this.store.dispatch(registerUser({userRegistered:this.form.value}))
+      
       this.router.navigate(['login'])
-    })
+
   }
 }
