@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule,Router } from '@angular/router';
 import { LoginSuccess, LoginUser } from 'src/app/Interfaces';
 import { Store } from '@ngrx/store';
 import { loginUser, updateUser } from 'src/app/State/Actions/userActions';
@@ -20,13 +20,20 @@ export class UpdateUserComponent implements OnInit {
   updateUser!: FormGroup
 
 
-  constructor(private store : Store<{user:LoginUser}>,private fb : FormBuilder){
+  constructor(private store : Store<{user:LoginUser}>,private fb : FormBuilder,private router:Router){
+    
+  }
+  ngOnInit(): void {
+    this.updateUser = this.fb.group({
+      name: new FormControl('',[Validators.required,Validators.minLength(3)]),
+      role : new FormControl('',[Validators.required]),
+    })
+
     this.store.select(loginUser).subscribe(res=>{
       console.log(res);
       
       this.user=res.user
-      this.role = this.user.users
-      this.name = this.user.users
+      
 
       this.updateUser.patchValue({
         name: this.user.users.name,
@@ -34,20 +41,13 @@ export class UpdateUserComponent implements OnInit {
         
       })
       
-      // console.log(this.user.users.role);
-      
-    })
-  }
-  ngOnInit(): void {
-    this.updateUser = this.fb.group({
-      name: new FormControl('',[Validators.required,Validators.minLength(3)]),
-      role : new FormControl('',[Validators.required]),
     })
   }
 
   onSubmit(){
   
     this.store.dispatch(updateUser({Name:this.user.users.name,role:this.user.users.role}))
+    this.router.navigate(['user'])
 
   }
   

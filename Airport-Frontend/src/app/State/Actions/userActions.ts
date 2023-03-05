@@ -21,8 +21,8 @@ export const registerSuccess = createAction('[register ] User Register Success',
 export const registerFailure = createAction('[register ] User Register Failure',props<{ error: string }>())
 
 
-export const updateUser = createAction('[Update User] Update User',props<{Name: any, role : any}>())
+export const updateUser = createAction('[update-user] Update User',props<{Name: any, role : any}>())
 
-export const updateUserSuccess = createAction('[Update User] Update User Success',props<{ message: string }>())
+export const updateUserSuccess = createAction('[update-user] Update User Success',props<{ message: string }>())
 
-export const updateUserFailure = createAction('[Update User] Update User Failure',props<{ error: string }>())
+export const updateUserFailure = createAction('[update-user] Update User Failure',props<{ error: string }>())
