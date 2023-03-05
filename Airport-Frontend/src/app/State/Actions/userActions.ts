@@ -19,3 +19,10 @@ export const registerUser = createAction('[register] User Register',props<{userR
 export const registerSuccess = createAction('[register ] User Register Success',props<{ message: string }>())
 
 export const registerFailure = createAction('[register ] User Register Failure',props<{ error: string }>())
+
+
+export const updateUser = createAction('[Update User] Update User',props<{Name: any, role : any}>())
+
+export const updateUserSuccess = createAction('[Update User] Update User Success',props<{ message: string }>())
+
+export const updateUserFailure = createAction('[Update User] Update User Failure',props<{ error: string }>())

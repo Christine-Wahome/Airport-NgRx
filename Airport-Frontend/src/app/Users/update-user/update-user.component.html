@@ -1,0 +1,17 @@
+
+
+<div class="user-update-form" >
+    <p>Update User</p>
+    <form [formGroup]="updateUser" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Name">
+        </div>
+        <div class="form-group">
+            <label for="email">Role</label>
+            <input type="text" class="form-control" id="role" formControlName="role" placeholder="Enter role">
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

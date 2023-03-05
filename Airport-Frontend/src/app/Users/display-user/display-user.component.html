@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="left">
+        <div class="content" [routerLink]="['/userUpdate']">
+        <label >Logged In User</label>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRog6epfJWr_aK4Q5m5o6OYOGoJAHZMpky4mA&usqp=CAU" alt="">
+        <h3>Name: {{name.name}}</h3>
+        <h3>Role: {{role.role}}</h3>
+    </div>
+    </div>
+    <div class="right">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

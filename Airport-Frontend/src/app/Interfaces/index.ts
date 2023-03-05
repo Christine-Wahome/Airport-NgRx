@@ -13,6 +13,10 @@ export interface LoginUser{
     
     Email:string
     password:string
+    users:{token?: string;
+         role?: string;
+         name?: string; }
+    
 
 }
 

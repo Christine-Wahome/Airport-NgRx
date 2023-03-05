@@ -1,0 +1,44 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+.container{
+    height: 100vh;
+    width: 98vh;
+}
+
+.left{
+    position: absolute;
+    width: 50%;
+    margin-top: 30px;
+    
+    
+}
+.content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 50px;
+    gap: 15px;
+}
+img{
+    height: 70px;
+    width: 70px;
+}
+.right{
+    position: absolute;
+    
+    
+    width: 50%;
+    
+}
+label{
+   
+    /* padding: 20px; */
+    color: blue;
+    font-weight: bold;
+    font-family: sans-serif;
+}
