@@ -25,7 +25,7 @@ export class UpdateUserComponent implements OnInit {
   }
   ngOnInit(): void {
     this.updateUser = this.fb.group({
-      name: new FormControl('',[Validators.required,Validators.minLength(3)]),
+      name: new FormControl('',[Validators.required]),
       role : new FormControl('',[Validators.required]),
     })
 

@@ -25,6 +25,8 @@ export const theLoggedInUsers= createSelector(LoginSliceState, state=>state.user
 
 export const registerSuccessMsg= createSelector(LoginSliceState, state=>state.registerSuccessMsg)
 
+// export const updateUserSuccess= createSelector(LoginSliceState, state=>state.updateUserSuccess)
+
 export const registerError= createSelector(LoginSliceState, state=>state.registerError)
 
 
