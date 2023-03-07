@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {  LoginUser } from 'src/app/Interfaces';
-import { loginUser } from 'src/app/State/Actions/userActions';
+
 import { Store } from '@ngrx/store';
+import { userProfile } from 'src/app/State/Reducers/userReducer';
 
 @Component({
   selector: 'app-display-user',
@@ -12,22 +13,28 @@ import { Store } from '@ngrx/store';
   templateUrl: './display-user.component.html',
   styleUrls: ['./display-user.component.css']
 })
-export class DisplayUserComponent {
+export class DisplayUserComponent implements OnInit {
   user!:LoginUser
-  name!: any | null
-  role!:any | null
+  name!: string
+  role!:string
 
     
   constructor(private store : Store<{user:LoginUser}>){
-    this.store.select(loginUser).subscribe(res=>{
+
+  }
+
+  ngOnInit(): void {
+    this.store.select(userProfile).subscribe(res=>{
       console.log(res);
       
-      this.user=res.user
-      this.role = this.user.users
-      this.name = this.user.users
-      
-      // console.log(this.user.users.role);
+
+      if(res){
+        this.role = res.role
+        this.name = res.name
+      }
       
     })
   }
+
+
 }

@@ -23,6 +23,8 @@ const LoginSliceState= createFeatureSelector<UserInterface>('user')
 
 export const theLoggedInUsers= createSelector(LoginSliceState, state=>state.users)
 
+export const userProfile= createSelector(LoginSliceState, state=>state.loginSuccess)
+
 export const registerSuccessMsg= createSelector(LoginSliceState, state=>state.registerSuccessMsg)
 
 // export const updateUserSuccess= createSelector(LoginSliceState, state=>state.updateUserSuccess)
@@ -35,7 +37,8 @@ export const userReducer = createReducer<UserInterface>(
     on (loginSuccess, (state,action):UserInterface =>{
         return {
             ...state,
-            users:action.res
+            users:action.res,
+            loginSuccess:action.res
         }
     }),
     on (loginFail, (state,action):UserInterface =>{

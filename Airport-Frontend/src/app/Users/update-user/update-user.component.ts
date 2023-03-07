@@ -46,7 +46,7 @@ export class UpdateUserComponent implements OnInit {
 
   onSubmit(){
   
-    this.store.dispatch(updateUser({Name:this.user.users.name,role:this.user.users.role}))
+    this.store.dispatch(updateUser({Name:this.updateUser.value.name,role:this.updateUser.value.role}))
     this.router.navigate(['user'])
 
   }
